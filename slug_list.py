@@ -309,7 +309,7 @@ def get_investor_information(url_list):
         #delay
         time.sleep(random.randint(5, 10))
     
-    print('Number of Slug Links': len(slug_list))
+    print('Number of Slug Links: ', len(slug_list))
     num = int(len(slug_list)//3)
 
     with open('slugs.csv', 'w') as f:
