@@ -309,23 +309,24 @@ def get_investor_information(url_list):
         #delay
         time.sleep(random.randint(5, 10))
     
-    print('Number of Slug Links: ', len(slug_list))
-    num = int(len(slug_list)//3)
+    new_list = list(investor_links)
+    print('Number of Investor Links: ', len(new_list))
+    num = int(len(new_list)//3)
 
     with open('slugs.csv', 'w') as f:
-        for investor in slug_list:
+        for investor in new_list:
             f.write("%s; \n" % (investor,))
 
     with open('slugs_1.csv', 'w') as g:
-        for investor in slug_list[0:num]:
+        for investor in new_list[0:num]:
             g.write("%s; \n" % (investor,))
     
     with open('slugs_2.csv', 'w') as h:
-        for investor in slug_list[num:num*2]:
+        for investor in new_list[num:num*2]:
             h.write("%s; \n" % (investor,))
     
     with open('slugs_3.csv', 'w') as fil:
-        for investor in slug_list[num*2:]:
+        for investor in new_list[num*2:]:
             fil.write("%s; \n" % (investor,))
 
 if __name__ == "__main__":
