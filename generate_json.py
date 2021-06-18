@@ -308,10 +308,10 @@ def save_json(data, name):
         json.dump(data, outfile)
 
 if __name__ == "__main__":
-    file_name = 'slugs_1.csv'
+    file_name = 'slugs_2.csv'
     page_urls = get_all_links(file_name)
     data = get_investor_information(page_urls)
-    save_json(data, 'signal_nfx_data_1.json')
+    save_json(data, 'signal_nfx_data_2.json')
     
     #print(page_urls)
     #link_list = get_investor_information(page_urls)
