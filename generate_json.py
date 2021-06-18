@@ -107,7 +107,7 @@ def get_article_page_links(url):
     return links
 '''
 
-def get_investor_data(url):
+def get_investor_data(urls):
     '''
     Get one investor's data
     Parameters: 
@@ -115,6 +115,8 @@ def get_investor_data(url):
     Output: 
         * dict_obj (dict) : compiled information about the investor
     '''
+    url = urls[:-2]
+    print(url)
 
     #get the html for the url
     page_html = get_html(url)
@@ -122,7 +124,8 @@ def get_investor_data(url):
     #NAME
     try:
         name = page_html.find("h1", {"class": "f3 f1-ns mv1"}).contents[0]
-    except:
+    except Exception as e:
+        print(e)
         name = ''
     
     #TYPE OF INVESTOR
@@ -252,6 +255,8 @@ def get_investor_data(url):
         'interested_in_categories' : c_list, 
         'past_investments' : investment_list
         }
+    
+    print(dict_obj)
     return dict_obj
 
 def get_all_links(filename):
@@ -308,10 +313,10 @@ def save_json(data, name):
         json.dump(data, outfile)
 
 if __name__ == "__main__":
-    file_name = 'slugs_2.csv'
+    file_name = 'slugs_1.csv'
     page_urls = get_all_links(file_name)
     data = get_investor_information(page_urls)
-    save_json(data, 'signal_nfx_data_2.json')
+    save_json(data, 'signal_nfx_data_1.json')
     
     #print(page_urls)
     #link_list = get_investor_information(page_urls)
