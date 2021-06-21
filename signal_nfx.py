@@ -1,3 +1,9 @@
+'''
+If you want to scrape from signal_nfx.py, run this file!
+
+If this is breaking, first run slug_list.py and then generate_json.py
+'''
+
 from bs4 import BeautifulSoup
 import urllib.request,sys,time
 from urllib.request import Request, urlopen
@@ -307,8 +313,10 @@ def get_investor_information(url_list):
         links = get_article_page_links(url)
         investor_links = investor_links.union(set(links))
         #delay
-        time.sleep(random.randint(1, 8))
+        time.sleep(random.randint(5, 10))
     
+
+
     data = {}
     data['investors'] = []
     
@@ -319,7 +327,7 @@ def get_investor_information(url_list):
             data['investors'].append(get_investor_data(link))
         except:
             continue
-        time.sleep(random.randint(1, 8))
+        time.sleep(random.randint(5, 15))
     return data
 
 '''
@@ -341,7 +349,7 @@ if __name__ == "__main__":
     file_name = 'signal_nfx_links.csv'
     page_urls = get_all_links(file_name)
     data = get_investor_information(page_urls)
-    save_json(data, 'signal_nfx_data_complete.json')
+    save_json(data, 'signal_nfx_data_complete_on_17th.json')
     
     #print(page_urls)
     #link_list = get_investor_information(page_urls)
