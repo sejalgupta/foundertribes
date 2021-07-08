@@ -189,7 +189,7 @@ def save_csv(data, name):
     with open(name, 'w') as f:
         f.write("Links;\n")
         for investor in data:
-            f.write("%s; %s; %s; %s; %s; %s; %s; %s; %s; %s; %s; %s; %s;\n" % (investor,))
+            f.write("%s;\n" % (investor,))
 
 if __name__ == "__main__":
     data = get_investor_information()
