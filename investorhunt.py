@@ -64,7 +64,7 @@ def get_investor_data(url):
     #LINKEDIN
     try:
         socials = page_html.find_all("div", {"class": "container"})[1].find_all('a')
-        website  = socials[0].get('href')
+        company_url  = socials[0].get('href')
         linkedin = socials[1].get('href')
         twitter = socials[2].get('href')
     except:
@@ -119,7 +119,6 @@ def get_investor_data(url):
     type = 'Angel'
      
     title_company = ''
-    company_url = ''
     location = ''
     recommendations = ''
     investing_company = ''
@@ -134,6 +133,7 @@ def get_investor_data(url):
         'company_url': company_url, 
         'company_location': location, 
         'linkedin': linkedin, 
+        'twitter': twitter,
         'investment_sweet_spot': investment_range, 
         'num_investments' : num_investments, 
         'fund_size' : fund_size, 
@@ -163,7 +163,8 @@ def get_investor_information():
             continue
         #delay
         time.sleep(random.randint(5, 10))
-
+    
+    save_csv(investor_links, 'investor_links.csv')
     data = {}
     data['investors'] = []
     
@@ -183,6 +184,12 @@ def save_json(data, name):
     '''
     with open(name, 'w') as outfile:
         json.dump(data, outfile)
+
+def save_csv(data, name):
+    with open(name, 'w') as f:
+        f.write("Links;\n")
+        for investor in data:
+            f.write("%s; %s; %s; %s; %s; %s; %s; %s; %s; %s; %s; %s; %s;\n" % (investor,))
 
 if __name__ == "__main__":
     data = get_investor_information()
